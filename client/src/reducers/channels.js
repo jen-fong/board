@@ -5,7 +5,7 @@ import {
 } from "../constants";
 import { normalize } from "./utils";
 
-const initialState = {
+export const initialState = {
   byId: {},
   ids: [],
   selectedChannel: null,

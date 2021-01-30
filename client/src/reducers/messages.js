@@ -5,7 +5,7 @@ import {
 } from "../constants";
 import { normalize } from "./utils";
 
-const initialState = {
+export const initialState = {
   byChannelId: {},
   byId: {},
   ids: [],
@@ -19,8 +19,9 @@ function setMessagesToChannel(channelId, messages) {
 }
 
 function addMessage(state, payload) {
+  const messageId = payload.id;
   const channelWithNewMessage = state.byChannelId[payload.channelId].concat(
-    payload.id
+    messageId
   );
 
   // Would have been a good idea to use immer to create immutable structures
@@ -33,8 +34,9 @@ function addMessage(state, payload) {
     },
     byId: {
       ...state.byId,
-      [payload.id]: payload,
+      [messageId]: payload,
     },
+    ids: state.ids.concat(messageId),
   };
 }
 
