@@ -1,0 +1,16 @@
+.channels {
+  background-color: #161616;
+  color: #ffffff;
+  width: 20%;
+  height: 100vh;
+  padding-top: 20px;
+}
+
+.channels__header {
+  margin-bottom: 10px;
+}
+
+.channel {
+  padding: 20px;
+  cursor: pointer;
+}
