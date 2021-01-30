@@ -4,6 +4,8 @@ import {
   FETCH_CHANNELS_SUCCESS,
   FETCH_CHANNEL_MESSAGES_PENDING,
   FETCH_CHANNEL_MESSAGES_SUCCESS,
+  SAVE_CHANNEL_MESSAGE,
+  SELECT_CHANNEL,
 } from "../constants";
 
 export const fetchChannels = () => async (dispatch) => {
@@ -17,6 +19,51 @@ export const fetchChannels = () => async (dispatch) => {
     dispatch({
       type: FETCH_CHANNELS_SUCCESS,
       payload: channelsResponse.data,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const selectChannel = (id) => {
+  return {
+    type: SELECT_CHANNEL,
+    payload: { id },
+  };
+};
+
+export const fetchChannelMessages = (channelId) => async (dispatch) => {
+  const url = `${baseURL}/messages/${channelId}`;
+
+  dispatch({
+    type: FETCH_CHANNEL_MESSAGES_PENDING,
+  });
+
+  try {
+    const messagesResponse = await axios.get(url);
+
+    dispatch({
+      type: FETCH_CHANNEL_MESSAGES_SUCCESS,
+      payload: messagesResponse.data,
+      meta: { channelId },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const saveChannelMessage = (channelId, message) => async (dispatch) => {
+  const url = `${baseURL}/${channelId}`;
+
+  const body = {
+    body: message,
+  };
+  try {
+    const response = await axios.post(url, body);
+
+    dispatch({
+      type: SAVE_CHANNEL_MESSAGE,
+      payload: response.data,
     });
   } catch (e) {
     console.log(e);

@@ -1,14 +1,22 @@
-import { FETCH_CHANNELS_SUCCESS } from "../constants";
+import { FETCH_CHANNELS_SUCCESS, SELECT_CHANNEL } from "../constants";
 
 const initialState = {
-  data: [],
+  all: [],
+  selectedChannel: null,
 };
 
 export function channelsReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_CHANNELS_SUCCESS:
       return {
-        data: action.payload,
+        ...state,
+        all: action.payload,
+      };
+
+    case SELECT_CHANNEL:
+      return {
+        ...state,
+        selectedChannel: action.payload.id,
       };
 
     default:

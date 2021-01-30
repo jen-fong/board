@@ -1,0 +1,9 @@
+.messages {
+  height: 75vh;
+  overflow-y: scroll;
+  margin: 10px 0;
+}
+
+.message {
+  margin: 15px 0;
+}

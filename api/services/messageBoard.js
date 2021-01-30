@@ -13,11 +13,12 @@ function saveMessage(channelId, { body }) {
   };
 
   data.messages.push(message);
+  return message;
 }
 
 function getChannelMessages(channelId) {
   const { messages } = data;
-
+  console.log(messages);
   return messages.filter((message) => message.channelId === channelId);
 }
 
