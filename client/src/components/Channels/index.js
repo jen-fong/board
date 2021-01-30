@@ -1,32 +1,44 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchChannels, selectChannel } from "../../actions/channels";
+import classNames from "classnames";
+import { fetchChannelMessages, fetchChannels } from "../../actions/channels";
 import "./index.css";
+import { getChannels, getSelectedChannel } from "../../selectors";
+
+function ChannelAvatar({ letter }) {
+  return <div className="channel-avatar">{letter}</div>;
+}
 
 function Channel() {
   const dispatch = useDispatch();
-  const channels = useSelector((state) => state.channels.all);
+  const channels = useSelector(getChannels);
+  const selectedChannel = useSelector(getSelectedChannel);
 
   useEffect(() => {
     dispatch(fetchChannels());
   }, [dispatch]);
 
   function handleChannelClick(id) {
-    dispatch(selectChannel(id));
+    dispatch(fetchChannelMessages(id));
   }
 
   return (
     <section className="channels">
       <header className="channels__header">Channels</header>
-
       {channels.map((channel) => {
+        const isActiveChannel =
+          selectedChannel && selectedChannel.id === channel.id;
+
         return (
           <div
-            className="channel"
+            className={classNames("channel", {
+              "channel--active": isActiveChannel,
+            })}
             key={channel.id}
             onClick={() => handleChannelClick(channel.id)}
           >
-            {channel.name}
+            <ChannelAvatar letter={channel.name[0]} />
+            <span className="channel__text">{channel.name}</span>
           </div>
         );
       })}

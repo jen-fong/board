@@ -4,17 +4,17 @@ import Channel from "./components/Channels";
 import Messages from "./components/Messages";
 import { useSelector } from "react-redux";
 import MessageComposer from "./components/MessageComposer";
+import { getSelectedChannel } from "./selectors";
 
 function App() {
-  const selectedChannel = useSelector(
-    (state) => state.channels.selectedChannel
-  );
+  const selectedChannel = useSelector(getSelectedChannel);
+  const messagesLoading = useSelector((state) => state.messages.isLoading);
 
   return (
     <div className="app">
       <Channel />
 
-      {selectedChannel ? (
+      {selectedChannel && !messagesLoading ? (
         <div className="messages-container">
           <Messages />
           <MessageComposer />

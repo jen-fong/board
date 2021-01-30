@@ -5,7 +5,6 @@ import {
   FETCH_CHANNEL_MESSAGES_PENDING,
   FETCH_CHANNEL_MESSAGES_SUCCESS,
   SAVE_CHANNEL_MESSAGE,
-  SELECT_CHANNEL,
 } from "../constants";
 
 export const fetchChannels = () => async (dispatch) => {
@@ -23,13 +22,6 @@ export const fetchChannels = () => async (dispatch) => {
   } catch (e) {
     console.log(e);
   }
-};
-
-export const selectChannel = (id) => {
-  return {
-    type: SELECT_CHANNEL,
-    payload: { id },
-  };
 };
 
 export const fetchChannelMessages = (channelId) => async (dispatch) => {

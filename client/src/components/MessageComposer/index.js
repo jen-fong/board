@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveChannelMessage } from "../../actions/channels";
+import { getSelectedChannel } from "../../selectors";
 import "./index.css";
 
 function MessageComposer() {
   const dispatch = useDispatch();
-  const selectedChannel = useSelector(
-    (state) => state.channels.selectedChannel
-  );
+  const selectedChannel = useSelector(getSelectedChannel);
   const [message, setMessage] = useState("");
 
   function handleChange(e) {
@@ -15,9 +14,14 @@ function MessageComposer() {
   }
 
   function handleSubmit() {
-    dispatch(saveChannelMessage(selectedChannel, message));
+    dispatch(saveChannelMessage(selectedChannel.id, message));
     setMessage("");
   }
+
+  useEffect(() => {
+    // reset messages when channel changes
+    setMessage("");
+  }, [selectedChannel.id]);
 
   const submitBtnIsDisabled = !message.length;
 

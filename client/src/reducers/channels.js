@@ -1,22 +1,39 @@
-import { FETCH_CHANNELS_SUCCESS, SELECT_CHANNEL } from "../constants";
+import {
+  FETCH_CHANNELS_SUCCESS,
+  FETCH_CHANNEL_MESSAGES_SUCCESS,
+} from "../constants";
 
 const initialState = {
-  all: [],
+  byId: {},
+  ids: [],
   selectedChannel: null,
+  isLoading: false,
 };
+
+function normalizeChannelsById(channels) {
+  const ids = [];
+  const byId = channels.reduce((accum, channel) => {
+    accum[channel.id] = channel;
+    ids.push(channel.id);
+
+    return accum;
+  }, {});
+
+  return { ids, byId };
+}
 
 export function channelsReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_CHANNELS_SUCCESS:
       return {
         ...state,
-        all: action.payload,
+        ...normalizeChannelsById(action.payload),
       };
 
-    case SELECT_CHANNEL:
+    case FETCH_CHANNEL_MESSAGES_SUCCESS:
       return {
         ...state,
-        selectedChannel: action.payload.id,
+        selectedChannel: action.meta.channelId,
       };
 
     default:
