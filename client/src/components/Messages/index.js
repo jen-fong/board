@@ -32,8 +32,12 @@ function Messages() {
       ) : (
         <div className="messages-list">
           {channelMessages.map((message) => {
+            const datetime = new Date(message.timestamp);
+            const dateDisplay = datetime.toLocaleString();
+
             return (
               <div className="message" key={message.id}>
+                <div>{dateDisplay}</div>
                 {message.body}
               </div>
             );

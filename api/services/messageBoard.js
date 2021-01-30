@@ -10,6 +10,7 @@ function saveMessage(channelId, { body }) {
     id: uuidv4(),
     channelId,
     body,
+    timestamp: Date.now(),
   };
 
   data.messages.push(message);
@@ -18,7 +19,6 @@ function saveMessage(channelId, { body }) {
 
 function getChannelMessages(channelId) {
   const { messages } = data;
-  console.log(messages);
   return messages.filter((message) => message.channelId === channelId);
 }
 
