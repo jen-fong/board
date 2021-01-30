@@ -1,4 +1,7 @@
 // in memory data storage
+// chose to model this similar to a sql database where you would have a table
+// of channels and a table of messages
+// messages would have a property channelId as key
 module.exports = {
   // prepopulated dummy data channels
   channels: [
