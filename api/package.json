@@ -1,7 +1,6 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./bin/www"
@@ -16,5 +15,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "uuid": "^8.3.2"
-  }
+  },
+  "description": ""
 }
