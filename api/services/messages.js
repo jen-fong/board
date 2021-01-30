@@ -1,10 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const data = require("../data");
 
-function getChannels() {
-  return data.channels;
-}
-
 function saveMessage(channelId, { body }) {
   const message = {
     id: uuidv4(),
@@ -23,7 +19,6 @@ function getChannelMessages(channelId) {
 }
 
 module.exports = {
-  getChannels,
   saveMessage,
   getChannelMessages,
 };
