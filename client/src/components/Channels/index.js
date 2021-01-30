@@ -4,10 +4,7 @@ import classNames from "classnames";
 import { fetchChannelMessages, fetchChannels } from "../../actions/channels";
 import "./index.css";
 import { getChannels, getSelectedChannel } from "../../selectors";
-
-function ChannelAvatar({ letter }) {
-  return <div className="channel-avatar">{letter}</div>;
-}
+import Avatar from "../Avatar";
 
 function Channel() {
   const dispatch = useDispatch();
@@ -37,7 +34,7 @@ function Channel() {
             key={channel.id}
             onClick={() => handleChannelClick(channel.id)}
           >
-            <ChannelAvatar letter={channel.name[0]} />
+            <Avatar>{channel.name[0]}</Avatar>
             <span className="channel__text">{channel.name}</span>
           </div>
         );

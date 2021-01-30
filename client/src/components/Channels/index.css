@@ -26,13 +26,3 @@
 .channel__text {
   margin-left: 10px;
 }
-
-.channel-avatar {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #26acf2;
-}
