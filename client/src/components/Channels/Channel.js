@@ -4,7 +4,7 @@ import Avatar from "../Avatar";
 import "./Channel.css";
 
 function Channel({ channel, active, onClick }) {
-  function handleChannelClick() {
+  function handleClick() {
     onClick(channel.id);
   }
 
@@ -13,7 +13,7 @@ function Channel({ channel, active, onClick }) {
       className={classNames("channel", {
         "channel--active": active,
       })}
-      onClick={handleChannelClick}
+      onClick={handleClick}
     >
       <Avatar>{channel.name[0]}</Avatar>
       <span className="channel__text">{channel.name}</span>

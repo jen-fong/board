@@ -10,19 +10,3 @@
   font-size: 1rem;
   font-weight: bold;
 }
-
-.channel {
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.channel--active {
-  background-color: #303030;
-  font-weight: bold;
-}
-
-.channel__text {
-  margin-left: 10px;
-}

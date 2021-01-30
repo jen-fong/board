@@ -3,6 +3,7 @@ import {
   FETCH_CHANNELS_SUCCESS,
   FETCH_CHANNEL_MESSAGES_SUCCESS,
 } from "../constants";
+import { normalize } from "./utils";
 
 const initialState = {
   byId: {},
@@ -10,18 +11,6 @@ const initialState = {
   selectedChannel: null,
   isLoading: false,
 };
-
-function normalizeChannelsById(channels) {
-  const ids = [];
-  const byId = channels.reduce((accum, channel) => {
-    accum[channel.id] = channel;
-    ids.push(channel.id);
-
-    return accum;
-  }, {});
-
-  return { ids, byId };
-}
 
 export function channelsReducer(state = initialState, action) {
   switch (action.type) {
@@ -34,7 +23,7 @@ export function channelsReducer(state = initialState, action) {
     case FETCH_CHANNELS_SUCCESS:
       return {
         ...state,
-        ...normalizeChannelsById(action.payload),
+        ...normalize(action.payload),
         isLoading: false,
       };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveChannelMessage } from "../../actions/messages";
 import { getSelectedChannel } from "../../selectors";
+import Button from "../Button";
 import "./index.css";
 
 function MessageComposer() {
@@ -34,15 +35,13 @@ function MessageComposer() {
       />
 
       <div>
-        <button
-          className={`btn btn--primary ${
-            submitBtnIsDisabled && "btn--disabled"
-          }`}
+        <Button
+          type="primary"
           onClick={handleSubmit}
           disabled={submitBtnIsDisabled}
         >
           submit
-        </button>
+        </Button>
       </div>
     </section>
   );

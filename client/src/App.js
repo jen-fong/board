@@ -20,7 +20,7 @@ function App() {
           <MessageComposer />
         </div>
       ) : (
-        <div className="messages-container">
+        <div className="messages-notification">
           Please select a channel to view messages
         </div>
       )}

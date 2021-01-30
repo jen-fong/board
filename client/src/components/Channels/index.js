@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import classNames from "classnames";
 import { fetchChannels } from "../../actions/channels";
 import { fetchChannelMessages } from "../../actions/messages";
 import { getChannels, getSelectedChannel } from "../../selectors";
-import Avatar from "../Avatar";
+import Channel from "./Channel";
 import "./index.css";
 
-function Channel() {
+function Channels() {
   const dispatch = useDispatch();
   const channels = useSelector(getChannels);
   const selectedChannel = useSelector(getSelectedChannel);
@@ -28,20 +27,16 @@ function Channel() {
           selectedChannel && selectedChannel.id === channel.id;
 
         return (
-          <div
-            className={classNames("channel", {
-              "channel--active": isActiveChannel,
-            })}
+          <Channel
+            channel={channel}
+            active={isActiveChannel}
             key={channel.id}
-            onClick={() => handleChannelClick(channel.id)}
-          >
-            <Avatar>{channel.name[0]}</Avatar>
-            <span className="channel__text">{channel.name}</span>
-          </div>
+            onClick={handleChannelClick}
+          />
         );
       })}
     </section>
   );
 }
 
-export default Channel;
+export default Channels;

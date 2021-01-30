@@ -3,29 +3,38 @@ import {
   FETCH_CHANNEL_MESSAGES_SUCCESS,
   SAVE_CHANNEL_MESSAGE_SUCCESS,
 } from "../constants";
+import { normalize } from "./utils";
 
 const initialState = {
-  byChannelId: {}, // this could probably be broken out to own reducer
+  byChannelId: {},
   byId: {},
   ids: [],
   isLoading: false,
 };
 
-function normalizeMessages(messages) {
-  const ids = [];
-  const byId = messages.reduce((accum, message) => {
-    accum[message.id] = message;
-    ids.push(message.id);
-
-    return accum;
-  }, {});
-
-  return { ids, byId };
-}
-
 function setMessagesToChannel(channelId, messages) {
   return {
     [channelId]: messages.map((message) => message.id),
+  };
+}
+
+function addMessage(state, payload) {
+  const channelWithNewMessage = state.byChannelId[payload.channelId].concat(
+    payload.id
+  );
+
+  // Would have been a good idea to use immer to create immutable structures
+  // and prevent this way of updating the state
+  return {
+    ...state,
+    byChannelId: {
+      ...state.byChannelId,
+      [payload.channelId]: channelWithNewMessage,
+    },
+    byId: {
+      ...state.byId,
+      [payload.id]: payload,
+    },
   };
 }
 
@@ -42,7 +51,7 @@ export function messagesReducer(state = initialState, action) {
 
       return {
         ...state,
-        ...normalizeMessages(action.payload),
+        ...normalize(action.payload),
         byChannelId: {
           ...state.byChannelId,
           ...setMessagesToChannel(channelId, action.payload),
@@ -51,19 +60,7 @@ export function messagesReducer(state = initialState, action) {
       };
 
     case SAVE_CHANNEL_MESSAGE_SUCCESS:
-      return {
-        ...state,
-        byChannelId: {
-          ...state.byChannelId,
-          [action.payload.channelId]: state.byChannelId[
-            action.payload.channelId
-          ].concat(action.payload.id),
-        },
-        byId: {
-          ...state.byId,
-          [action.payload.id]: action.payload,
-        },
-      };
+      return addMessage(state, action.payload);
 
     default:
       return state;
