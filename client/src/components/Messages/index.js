@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { getChannelMessages, getSelectedChannel } from "../../selectors";
+import Avatar from "../Avatar";
 
 import "./index.css";
 
@@ -37,8 +38,25 @@ function Messages() {
 
             return (
               <div className="message" key={message.id}>
-                <div>{dateDisplay}</div>
-                {message.body}
+                <div>
+                  <Avatar styles="message__user-avatar">
+                    {/*
+                      Usually would be the user profile img but since we don't
+                      have users, a dummy icon is used here
+                    */}
+                    <img src="/images/user.svg" alt="user" />
+                  </Avatar>
+                </div>
+
+                <div className="message__content">
+                  <div>
+                    {/* Also use a dummy username here */}
+                    <span>Username</span>
+                    <span className="message__date">{dateDisplay}</span>
+                  </div>
+
+                  <p>{message.body}</p>
+                </div>
               </div>
             );
           })}
