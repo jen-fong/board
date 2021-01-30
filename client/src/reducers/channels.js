@@ -1,4 +1,5 @@
 import {
+  FETCH_CHANNELS_PENDING,
   FETCH_CHANNELS_SUCCESS,
   FETCH_CHANNEL_MESSAGES_SUCCESS,
 } from "../constants";
@@ -24,10 +25,17 @@ function normalizeChannelsById(channels) {
 
 export function channelsReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_CHANNELS_PENDING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case FETCH_CHANNELS_SUCCESS:
       return {
         ...state,
         ...normalizeChannelsById(action.payload),
+        isLoading: false,
       };
 
     case FETCH_CHANNEL_MESSAGES_SUCCESS:

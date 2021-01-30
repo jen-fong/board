@@ -1,7 +1,7 @@
 import {
   FETCH_CHANNEL_MESSAGES_PENDING,
   FETCH_CHANNEL_MESSAGES_SUCCESS,
-  SAVE_CHANNEL_MESSAGE,
+  SAVE_CHANNEL_MESSAGE_SUCCESS,
 } from "../constants";
 
 const initialState = {
@@ -50,7 +50,7 @@ export function messagesReducer(state = initialState, action) {
         isLoading: false,
       };
 
-    case SAVE_CHANNEL_MESSAGE:
+    case SAVE_CHANNEL_MESSAGE_SUCCESS:
       return {
         ...state,
         byChannelId: {

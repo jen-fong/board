@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
-import { fetchChannelMessages, fetchChannels } from "../../actions/channels";
-import "./index.css";
+import { fetchChannels } from "../../actions/channels";
+import { fetchChannelMessages } from "../../actions/messages";
 import { getChannels, getSelectedChannel } from "../../selectors";
 import Avatar from "../Avatar";
+import "./index.css";
 
 function Channel() {
   const dispatch = useDispatch();

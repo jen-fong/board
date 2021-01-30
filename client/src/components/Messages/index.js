@@ -25,17 +25,23 @@ function Messages() {
     <section className="messages">
       <header className="messages__header">{channel.name}</header>
 
-      <div className="messages-list">
-        {channelMessages.map((message) => {
-          return (
-            <div className="message" key={message.id}>
-              {message.body}
-            </div>
-          );
-        })}
+      {!channelMessages.length ? (
+        <div className="message">
+          There are no messages in this channel. Start by sending one now!
+        </div>
+      ) : (
+        <div className="messages-list">
+          {channelMessages.map((message) => {
+            return (
+              <div className="message" key={message.id}>
+                {message.body}
+              </div>
+            );
+          })}
 
-        <div ref={messageBottomRef} />
-      </div>
+          <div ref={messageBottomRef} />
+        </div>
+      )}
     </section>
   );
 }

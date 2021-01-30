@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveChannelMessage } from "../../actions/channels";
+import { saveChannelMessage } from "../../actions/messages";
 import { getSelectedChannel } from "../../selectors";
 import "./index.css";
 
