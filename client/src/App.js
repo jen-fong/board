@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Channel from "./components/Channels";
 import Messages from "./components/Messages";

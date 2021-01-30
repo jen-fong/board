@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Avatar from "../Avatar";
 import "./Channel.css";
 
-function Channel({ channel, active, onClick }) {
+function Channel({ channel, isActive, onClick }) {
   function handleClick() {
     onClick(channel.id);
   }
@@ -11,11 +11,12 @@ function Channel({ channel, active, onClick }) {
   return (
     <div
       className={classNames("channel", {
-        "channel--active": active,
+        "channel--active": isActive,
       })}
       onClick={handleClick}
+      data-testid="channel"
     >
-      <Avatar>{channel.name[0]}</Avatar>
+      <Avatar data-testid="channel-user-icon">{channel.name[0]}</Avatar>
       <span className="channel__text">{channel.name}</span>
     </div>
   );

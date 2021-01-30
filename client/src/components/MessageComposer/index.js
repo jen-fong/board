@@ -32,15 +32,17 @@ function MessageComposer() {
         className="message-composer__textbox"
         onChange={handleChange}
         value={message}
+        data-testid="message-composer-textbox"
       />
 
       <div>
         <Button
+          role="button"
           type="primary"
           onClick={handleSubmit}
           disabled={submitBtnIsDisabled}
         >
-          submit
+          Send
         </Button>
       </div>
     </section>

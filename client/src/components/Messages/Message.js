@@ -7,9 +7,9 @@ function Message({ message }) {
   const dateDisplay = datetime.toLocaleString();
 
   return (
-    <div className="message" key={message.id}>
+    <div className="message" key={message.id} data-testid="channel-message">
       <div>
-        <Avatar styles="message__user-avatar">
+        <Avatar styles="message__user-avatar" data-testid="user-avatar">
           {/*
             Usually would be the user profile img but since we don't
             have users, a dummy icon is used here

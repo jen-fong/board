@@ -29,9 +29,10 @@ function Channels() {
         return (
           <Channel
             channel={channel}
-            active={isActiveChannel}
+            isActive={isActiveChannel}
             key={channel.id}
             onClick={handleChannelClick}
+            data-testid="channel"
           />
         );
       })}
