@@ -6,7 +6,9 @@
 }
 
 .channels__header {
-  margin: 20px 0 10px 0;
+  margin: 20px 0 10px 10px;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .channel {
@@ -18,6 +20,7 @@
 
 .channel--active {
   background-color: #303030;
+  font-weight: bold;
 }
 
 .channel__text {

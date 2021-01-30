@@ -1,9 +1,24 @@
 .messages {
   height: 75vh;
-  overflow-y: scroll;
   margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages__header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+  border-bottom: 1px solid #000000;
+  padding: 0 20px 15px 20px;
+}
+
+.messages-list {
+  overflow-y: scroll;
+
+  flex-grow: 1;
 }
 
 .message {
-  margin: 15px 0;
+  margin: 15px 20px;
 }
